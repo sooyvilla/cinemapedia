@@ -65,4 +65,11 @@ class MoviedbDatasource extends MoviesDatasource {
 
     return movie;
   }
+
+  @override
+  Future<List<Movie>> getRecomendation(String movieId, {int page = 1}) async {
+    final response = await dio.get('/movie/$movieId/recommendations',
+        queryParameters: {'page': page});
+    return _jsonToMovies(response.data);
+  }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/entities/movie.dart';
 import '../../providers/movies/movie_info_provider.dart';
 import '../../providers/providers.dart';
+import '../../widgets/shared/cards_horizontal_listview.dart';
 
 class MoviesScreen extends ConsumerStatefulWidget {
   static const name = 'movie-screen';
@@ -23,12 +24,14 @@ class MoviesScreenState extends ConsumerState<MoviesScreen> {
     super.initState();
     ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
     ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieId);
+    ref.read(movieRecomendationProvider.notifier).loadNextPage(widget.movieId);
   }
 
   @override
   Widget build(BuildContext context) {
     final Movie? movie = ref.watch(movieInfoProvider)[widget.movieId];
-
+    final List<Movie> movieRecomendation =
+        ref.watch(movieRecomendationProvider);
     if (movie == null) {
       return const Scaffold(
         body: Center(
@@ -49,7 +52,10 @@ class MoviesScreenState extends ConsumerState<MoviesScreen> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             childCount: 1,
-            (context, index) => _MovieDetails(movie: movie),
+            (context, index) => _MovieDetails(
+              movie: movie,
+              movieRecomendation: movieRecomendation,
+            ),
           ),
         )
       ],
@@ -59,13 +65,13 @@ class MoviesScreenState extends ConsumerState<MoviesScreen> {
 
 class _MovieDetails extends StatelessWidget {
   final Movie movie;
-  const _MovieDetails({required this.movie});
+  final List<Movie> movieRecomendation;
+  const _MovieDetails({required this.movie, required this.movieRecomendation});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final textStyle = Theme.of(context).textTheme;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -120,6 +126,10 @@ class _MovieDetails extends StatelessWidget {
           ),
         ),
         _ActorsByMovie(movieId: movie.id.toString()),
+        CardsHorizontalListView(
+          movies: movieRecomendation,
+          title: 'Peliculas recomendadas',
+        )
       ],
     );
   }
@@ -200,7 +210,7 @@ class _ActorsByMovie extends ConsumerWidget {
     final actorsByMovie = ref.watch(actorsByMovieProvider);
 
     if (actorsByMovie[movieId] == null) {
-      return const CircularProgressIndicator();
+      return const Center(child: CircularProgressIndicator());
     }
 
     final actors = actorsByMovie[movieId]!;

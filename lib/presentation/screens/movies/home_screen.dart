@@ -63,7 +63,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                     children: [
                       // const CustomAppbar(),
                       MoviesSlideshow(movies: slideShowMovies),
-                      MovieHorizontalListView(
+                      CardsHorizontalListView(
                         movies: nowPlayingMovies,
                         title: 'En cines',
                         subTitle: 'Lunes 20',
@@ -71,7 +71,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                             .read(nowPlayingMoviesProvider.notifier)
                             .loadNextPage(),
                       ),
-                      MovieHorizontalListView(
+                      CardsHorizontalListView(
                         movies: upcomingMovies,
                         title: 'Proximamente',
                         subTitle: 'En este mes',
@@ -79,7 +79,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                             .read(upcomingMoviesProvider.notifier)
                             .loadNextPage(),
                       ),
-                      MovieHorizontalListView(
+                      CardsHorizontalListView(
                         movies: popularMovies,
                         title: 'Populares',
                         // subTitle: '',
@@ -87,7 +87,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                             .read(popularMoviesProvider.notifier)
                             .loadNextPage(),
                       ),
-                      MovieHorizontalListView(
+                      CardsHorizontalListView(
                         movies: topRatedMovies,
                         title: 'Mejor calificados',
                         subTitle: 'Desde siempre',

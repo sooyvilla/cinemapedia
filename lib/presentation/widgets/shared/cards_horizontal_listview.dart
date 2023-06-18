@@ -5,13 +5,13 @@ import 'package:go_router/go_router.dart';
 import '../../../config/helpers/human_formats.dart';
 import '../../../domain/entities/movie.dart';
 
-class MovieHorizontalListView extends StatefulWidget {
+class CardsHorizontalListView extends StatefulWidget {
   final List<Movie> movies;
   final String? title;
   final String? subTitle;
   final VoidCallback? loadNextPage;
 
-  const MovieHorizontalListView(
+  const CardsHorizontalListView(
       {super.key,
       required this.movies,
       this.title,
@@ -19,11 +19,11 @@ class MovieHorizontalListView extends StatefulWidget {
       this.loadNextPage});
 
   @override
-  State<MovieHorizontalListView> createState() =>
-      _MovieHorizontalListViewState();
+  State<CardsHorizontalListView> createState() =>
+      _CardsHorizontalListViewState();
 }
 
-class _MovieHorizontalListViewState extends State<MovieHorizontalListView> {
+class _CardsHorizontalListViewState extends State<CardsHorizontalListView> {
   final scrollController = ScrollController();
 
   @override
