@@ -24,7 +24,7 @@ class MoviesScreenState extends ConsumerState<MoviesScreen> {
     super.initState();
     ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
     ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieId);
-    ref.read(movieRecomendationProvider.notifier).loadNextPage(widget.movieId);
+    // ref.read(movieRecomendationProvider.notifier).loadNextPage(widget.movieId);
   }
 
   @override
@@ -126,10 +126,10 @@ class _MovieDetails extends StatelessWidget {
           ),
         ),
         _ActorsByMovie(movieId: movie.id.toString()),
-        CardsHorizontalListView(
-          movies: movieRecomendation,
-          title: 'Peliculas recomendadas',
-        )
+        // CardsHorizontalListView(
+        //   movies: movieRecomendation,
+        //   title: 'Peliculas recomendadas',
+        // )
       ],
     );
   }

@@ -35,4 +35,9 @@ class MovieRepositoryImpl extends MoviesRepository {
   Future<List<Movie>> getRecomendation(String movieId, {int page = 1}) {
     return datasource.getRecomendation(movieId, page: page);
   }
+
+  @override
+  Future<List<Movie>> searchMovies(String query) {
+    return datasource.searchMovies(query);
+  }
 }

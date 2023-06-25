@@ -8,14 +8,14 @@ MovieDbResponse movieDbResponseFromMap(String str) =>
 String movieDbResponseToMap(MovieDbResponse data) => json.encode(data.toMap());
 
 class MovieDbResponse {
-  final Dates? dates;
+  // final Dates? dates;
   final int page;
   final List<MovieMovieDB> results;
   final int totalPages;
   final int totalResults;
 
   MovieDbResponse({
-    required this.dates,
+    // required this.dates,
     required this.page,
     required this.results,
     required this.totalPages,
@@ -23,7 +23,7 @@ class MovieDbResponse {
   });
 
   factory MovieDbResponse.fromMap(Map<String, dynamic> json) => MovieDbResponse(
-        dates: json['dates'] != null ? Dates.fromMap(json['dates']) : null,
+        // dates: json['dates'] != null ? Dates.fromMap(json['dates']) : null,
         page: json['page'],
         results: List<MovieMovieDB>.from(
             json['results'].map((x) => MovieMovieDB.fromMap(x))),
@@ -32,7 +32,7 @@ class MovieDbResponse {
       );
 
   Map<String, dynamic> toMap() => {
-        'dates': dates == null ? null : dates!.toMap(),
+        // 'dates': dates == null ? null : dates!.toMap(),
         'page': page,
         'results': List<dynamic>.from(results.map((x) => x.toMap())),
         'total_pages': totalPages,
@@ -40,24 +40,24 @@ class MovieDbResponse {
       };
 }
 
-class Dates {
-  final DateTime maximum;
-  final DateTime minimum;
+// class Dates {
+//   final DateTime maximum;
+//   final DateTime minimum;
 
-  Dates({
-    required this.maximum,
-    required this.minimum,
-  });
+//   Dates({
+//     required this.maximum,
+//     required this.minimum,
+//   });
 
-  factory Dates.fromMap(Map<String, dynamic> json) => Dates(
-        maximum: DateTime.parse(json['maximum']),
-        minimum: DateTime.parse(json['minimum']),
-      );
+//   factory Dates.fromMap(Map<String, dynamic> json) => Dates(
+//         maximum: DateTime.parse(json['maximum']),
+//         minimum: DateTime.parse(json['minimum']),
+//       );
 
-  Map<String, dynamic> toMap() => {
-        'maximum':
-            "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
-        'minimum':
-            "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
-      };
-}
+//   Map<String, dynamic> toMap() => {
+//         'maximum':
+//             "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
+//         'minimum':
+//             "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
+//       };
+// }
