@@ -1,5 +1,5 @@
 import '../entities/actor.dart';
 
 abstract class ActorsDatasource {
-  Future<List<Actor>> getActorByMovie(String movieId);
+  Future<List<Actor>> getActorsByMovie(String movieId);
 }

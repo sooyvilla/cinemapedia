@@ -1,5 +1,5 @@
 import '../../domain/datasources/movies_datasource.dart';
-import '../../domain/entities/movie.dart';
+import '../../domain/entities/entities.dart';
 import '../../domain/repositories/movies_repository.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
@@ -18,12 +18,12 @@ class MovieRepositoryImpl extends MoviesRepository {
 
   @override
   Future<List<Movie>> getTopRated({int page = 1}) {
-    return datasource.getTopRated();
+    return datasource.getTopRated(page: page);
   }
 
   @override
   Future<List<Movie>> getUpcoming({int page = 1}) {
-    return datasource.getUpcoming();
+    return datasource.getUpcoming(page: page);
   }
 
   @override
@@ -32,12 +32,17 @@ class MovieRepositoryImpl extends MoviesRepository {
   }
 
   @override
-  Future<List<Movie>> getRecomendation(String movieId, {int page = 1}) {
-    return datasource.getRecomendation(movieId, page: page);
+  Future<List<Movie>> searchMovies(String query) {
+    return datasource.searchMovies(query);
   }
 
   @override
-  Future<List<Movie>> searchMovies(String query) {
-    return datasource.searchMovies(query);
+  Future<List<Movie>> getSimilarMovies(int movieId) {
+    return datasource.getSimilarMovies(movieId);
+  }
+
+  @override
+  Future<List<Video>> getYoutubeVideosById(int movieId) {
+    return datasource.getYoutubeVideosById(movieId);
   }
 }
