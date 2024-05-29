@@ -17,6 +17,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   Timer? _debounceTimer;
 
+
   SearchMovieDelegate({
     required this.searchMovies,
     required this.initialMovies,
